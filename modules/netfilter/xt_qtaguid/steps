@@ -7,4 +7,4 @@ export KERNEL_DIR=$YOUR_PATH/kernel
 export ARCH=arm
 
 make ARCH=arm mapphone_defconfig
-make ARCH=arm M=$MYDROID/device/motorola/spyder/modules/netfilter/xt_qtaguid modules
+make ARCH=arm M=$MYDROID/device/motorola/maserati/modules/netfilter/xt_qtaguid modules
