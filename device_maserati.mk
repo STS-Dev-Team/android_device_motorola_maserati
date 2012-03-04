@@ -210,6 +210,13 @@ PRODUCT_COPY_FILES += \
     device/motorola/maserati/prebuilt/usr/keylayout/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl \
     device/motorola/maserati/prebuilt/usr/keylayout/atmxt-i2c.kl:system/usr/keylayout/atmxt-i2c.kl \
 
+# CameraFix
+PRODUCT_COPY_FILES += \
+    device/motorola/maserati/prebuilt/camerafix/hw/camera.omap4.so:system/lib/hw/camera.omap4.so \
+    device/motorola/maserati/prebuilt/camerafix/libcamera.so:system/lib/libcamera.so \
+    device/motorola/maserati/prebuilt/camerafix/libomxcameraadapter.so:system/lib/libomxcameraadapter.so \
+    device/motorola/maserati/prebuilt/camerafix/libtiutils.so:system/lib/libtiutils.so \
+
 # Phone settings
 PRODUCT_COPY_FILES += \
     device/sample/etc/apns-conf_verizon.xml:system/etc/apns-conf.xml \
