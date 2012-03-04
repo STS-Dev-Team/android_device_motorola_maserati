@@ -202,7 +202,6 @@ PRODUCT_COPY_FILES += \
     device/motorola/maserati/prebuilt/usr/keychars/atmxt-i2c.kcm:system/usr/keychars/atmxt-i2c.kcm \
     device/motorola/maserati/prebuilt/usr/keylayout/aev_abs.kl:system/usr/keylayout/aev_abs.kl \
     device/motorola/maserati/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-    device/motorola/maserati/prebuilt/usr/keylayout/cdma_maserati-keypad.kl:system/usr/keylayout/cdma_maserati-keypad.kl \
     device/motorola/maserati/prebuilt/usr/keylayout/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
     device/motorola/maserati/prebuilt/usr/keylayout/light-prox.kl:system/usr/keylayout/light-prox.kl \
     device/motorola/maserati/prebuilt/usr/keylayout/mapphone-switch.kl:system/usr/keylayout/mapphone-switch.kl \
