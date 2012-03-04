@@ -362,9 +362,9 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("*                                              *")
   script.Print("*            STS-Dev-Team presents             *")
   script.Print("*                                              *")
-  script.Print("*          IC3RAZR Alpha for 6.12.17X          *")
+  script.Print("*                ICS Droid4 Beta               *")
   script.Print("*                                              *")
-  script.Print("*     Follow us  @dhacker29 and @hashcode0f    *")
+  script.Print("*     Follow us  @hashcode0f and @dhacker29    *")
   script.Print("*   Get the GApps at STS-Dev-Team.us.to/gapps  *")
   script.Print("*                                              *")
   script.Print("*  And visit STS-Dev-Team.us.to, droidrzr.com  *")
@@ -410,11 +410,9 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.ShowProgress(0.2, 10)
 
   script.ShowProgress(0.1, 0)
-  script.Print("If you are not on system 6.12.17x this probably won't boot")
-  script.Print("")
   script.Print("Don't forget to install the GApps beforey you reboot.")
   script.Print("")
-  script.Print("Finished installing IC3RAZR, Enjoy!")
+  script.Print("Finished installing ICS for Droid 4, Enjoy!")
   device_specific.FullOTA_InstallEnd()
 
   if OPTIONS.extra_script is not None:
