@@ -8,6 +8,8 @@ key 8     7
 key 9     8
 key 10    9
 key 11    0
+key 12    MINUS
+key 13    EQUALS
 key 14    DEL
 key 15    TAB
 key 16    Q
@@ -30,7 +32,7 @@ key 35    H
 key 36    J
 key 37    K
 key 38    L
-key 41    GRAVE
+key 40    APOSTROPHE
 key 42    SHIFT_LEFT
 key 44    Z
 key 45    X
@@ -42,26 +44,14 @@ key 50    M
 key 51    COMMA
 key 52    PERIOD
 key 53    SLASH
-key 54    SHIFT_RIGHT
-key 56    ALT_LEFT
 key 57    SPACE
-key 62    F4
 key 103   DPAD_UP
 key 105   DPAD_LEFT
 key 106   DPAD_RIGHT
-key 107   ENDCALL             WAKE_DROPPED
 key 108   DPAD_DOWN
-key 113   MUTE
-key 114   VOLUME_DOWN
 key 115   VOLUME_UP
-key 139   MENU
-key 163   MEDIA_NEXT
-key 164   MEDIA_PLAY_PAUSE
-key 165   MEDIA_PREVIOUS
-key 167   MEDIA_RECORD
-key 215   AT
-key 217   SEARCH
-key 226   HEADSETHOOK         WAKE
+key 162   MEDIA_EJECT
+key 222   CAPS_LOCK
 key 231   CALL                WAKE_DROPPED
 key 232   DPAD_CENTER
 

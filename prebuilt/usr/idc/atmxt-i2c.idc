@@ -13,7 +13,7 @@
 # limitations under the License.
 
 #
-# Input Device Calibration File for the Spyder touch screen.
+# Input Device Calibration File for the maserati touch screen.
 #
 
 # Basic Parameters

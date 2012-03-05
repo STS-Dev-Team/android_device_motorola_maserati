@@ -17,8 +17,7 @@ type ALPHA
 key A {
     label:           'A'
     base:            'a'
-    shift, capslock: 'A'
-    alt:             '\u20ac'
+    shift, capslock, alt: 'A'
 }
 
 key B {
@@ -199,116 +198,119 @@ key Z {
 key 0 {
     label, number: '0'
     base: '0'
-    shift, capslock: '0'
-    ctrl, alt, meta: none
+    shift, capslock: ')'
+    ctrl, alt, meta: ')'
 }
 
 key 1 {
     label, number: '1'
     base: '1'
-    shift, capslock: '1'
-    ctrl, alt, meta: none
+    shift, capslock: '!'
+    ctrl, alt, meta: '!'
 }
 
 key 2 {
     label, number: '2'
     base: '2'
-    shift, capslock: '2'
-    ctrl, alt, meta: none
+    shift, capslock: '@'
+    ctrl, alt, meta: '@'
 }
 
 key 3 {
     label, number: '3'
     base: '3'
-    shift, capslock: '3'
-    ctrl, alt, meta: none
+    shift, capslock: '#'
+    ctrl, alt, meta: '#'
 }
 
 key 4 {
     label, number: '4'
     base: '4'
-    shift, capslock: '4'
-    ctrl, alt, meta: none
+    shift, capslock: '$'
+    ctrl, alt, meta: '$'
 }
 
 key 5 {
     label, number: '5'
     base: '5'
-    shift, capslock: '5'
-    ctrl, alt, meta: none
+    shift, capslock: '%'
+    ctrl, alt, meta: '%'
 }
 
 key 6 {
     label, number: '6'
     base: '6'
-    shift, capslock: '6'
-    ctrl, alt, meta: none
+    shift, capslock: '^'
+    ctrl, alt, meta: '^'
 }
 
 key 7 {
     label, number: '7'
     base: '7'
-    shift, capslock: '7'
-    ctrl, alt, meta: none
+    shift, capslock: '&'
+    ctrl, alt, meta: '&'
 }
 
 key 8 {
     label, number: '8'
     base: '8'
-    shift, capslock: '8'
-    ctrl, alt, meta: none
+    shift, capslock: '*'
+    ctrl, alt, meta: '*'
 }
 
 key 9 {
     label, number: '9'
     base: '9'
-    shift, capslock: '9'
-    ctrl, alt, meta: none
+    shift, capslock: '('
+    ctrl, alt, meta: '('
+}
+
+key MINUS {
+    label, number:      '-'
+    base:               '-'
+    shift, capslock, alt: '_'
 }
 
 key COMMA {
     label:              ','
     number:             ','
     base:               ','
-    shift, capslock:    ','
-    alt:                ';'
+    shift, capslock, alt: ';'
 }
 
 key PERIOD {
     label, number:      '.'
     base:               '.'
-    shift, capslock:    '.'
-    alt:                ':'
+    shift, capslock, alt: ':'
 }
 
 key SPACE {
     label, number:      ' '
     base:               ' '
-    shift, capslock:    ' '
-    alt:                '\uef01'
+    shift, capslock, alt:    ' '
 }
 #    meta:               fallback SEARCH
 
-key GRAVE {
-    label:                              '`'
-    base:                               '`'
-    shift:                              '`'
-    alt:                                '~'
-    shift+alt:                          '~'
+key MEDIA_EJECT {
+    label, number, base, shift, capslock, alt: '\uef01'
+}
+
+key APOSTROPHE {
+    label:                              '\''
+    base:                               '\''
+    shift, capslock, alt:               '\"'
 }
 
 key SLASH {
     label, number:      '/'
     base:               '/'
-    shift, capslock:    '/'
-    alt:                '?'
+    shift, capslock, alt:    '?'
 }
 
-key AT {
-    label:              '@'
-    base:               '@'
-    shift, capslock:    '@'
-    alt:                '^'
+key EQUALS {
+    label, number:      '='
+    base:               '='
+    shift, capslock, alt:    '+'
 }
 
 key ENTER {
@@ -320,12 +322,14 @@ key ENTER {
     shift+alt:                          '\n'
 }
 
+key CAPS_LOCK {
+    base: fallback CAPS_LOCK
+}
+
 key TAB {
     label:                              '\t'
     number:                             '\t'
     base:                               '\t'
-    shift:                              '\t'
-    alt:                                '\t'
-    shift+alt:                          '\t'
+    shift, alt, capslock:               fallback MEDIA_RECORD
 }
 
