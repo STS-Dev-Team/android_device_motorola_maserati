@@ -174,6 +174,8 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 
 
+# Removed for camerafix
+#    device/motorola/maserati/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
 # Prebuilts
 PRODUCT_COPY_FILES += \
     device/motorola/maserati/prebuilt/bin/battd:system/bin/battd \
@@ -181,7 +183,6 @@ PRODUCT_COPY_FILES += \
     device/motorola/maserati/prebuilt/bin/hijack.log_dump:system/bin/hijack.log_dump \
     device/motorola/maserati/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/maserati/prebuilt/bin/strace:system/bin/strace \
-    device/motorola/maserati/prebuilt/etc/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
     device/motorola/maserati/prebuilt/etc/gps.conf:system/etc/gps.conf \
     device/motorola/maserati/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/motorola/maserati/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
@@ -212,7 +213,8 @@ PRODUCT_COPY_FILES += \
 
 # CameraFix
 PRODUCT_COPY_FILES += \
-    device/motorola/maserati/prebuilt/camerafix/hw/camera.omap4.so:system/lib/hw/camera.omap4.so \
+    device/motorola/maserati/prebuilt/camerafix/TICameraCameraProperties.xml:system/etc/TICameraCameraProperties.xml \
+    device/motorola/maserati/prebuilt/camerafix/camera.omap4.so:system/lib/hw/camera.omap4.so \
     device/motorola/maserati/prebuilt/camerafix/libcamera.so:system/lib/libcamera.so \
     device/motorola/maserati/prebuilt/camerafix/libomxcameraadapter.so:system/lib/libomxcameraadapter.so \
     device/motorola/maserati/prebuilt/camerafix/libtiutils.so:system/lib/libtiutils.so \
