@@ -121,9 +121,9 @@ rm -rf $REPACK/ota/recovery
 cp -f $ANDROID_BUILD_TOP/device/motorola/maserati/prebuilt/lib/libvoicesearch.so $REPACK/ota/system/lib/libvoicesearch.so
 
 # Determine what to name the new signed package
-REALDATE=`date +%F-%H_%M`
+REALDATE=`date +%m-%d`
 
-OUTFILE=$OUT/ICS-4.0.3_r1-$TARGET_PRODUCT-$REALDATE.zip
+OUTFILE=$OUT/DROID4-CM9-$REALDATE-UNOFFICIAL.zip
 
 # Pack it up and sign
 printf "Zipping package..."
