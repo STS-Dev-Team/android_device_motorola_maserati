@@ -183,6 +183,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/maserati/prebuilt/bin/hijack.log_dump:system/bin/hijack.log_dump \
     device/motorola/maserati/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/maserati/prebuilt/bin/strace:system/bin/strace \
+    device/motorola/maserati/prebuilt/bin/usbd:system/bin/usbd \
     device/motorola/maserati/prebuilt/etc/gps.conf:system/etc/gps.conf \
     device/motorola/maserati/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/motorola/maserati/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
