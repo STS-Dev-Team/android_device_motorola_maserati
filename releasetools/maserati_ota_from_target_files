@@ -447,8 +447,8 @@ def WriteFullOTAPackage(input_zip, output_zip):
   else:
     script.UndoRetouchBinaries(retouch_files)
 
-  boot_img = common.GetBootableImage("boot.img", "boot.img",
-                                     OPTIONS.input_tmp, "BOOT")
+#  boot_img = common.GetBootableImage("boot.img", "boot.img",
+#                                     OPTIONS.input_tmp, "BOOT")
   #recovery_img = common.GetBootableImage("recovery.img", "recovery.img",
   #                                       OPTIONS.input_tmp, "RECOVERY")
   #MakeRecoveryPatch(output_zip, recovery_img, boot_img)
@@ -456,8 +456,8 @@ def WriteFullOTAPackage(input_zip, output_zip):
   Item.GetMetadata(input_zip)
   Item.Get("system").SetPermissions(script)
 
-  common.CheckSize(boot_img.data, "boot.img", OPTIONS.info_dict)
-  common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
+#  common.CheckSize(boot_img.data, "boot.img", OPTIONS.info_dict)
+#  common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
   script.ShowProgress(0.2, 0)
 
   if OPTIONS.backuptool:
@@ -593,11 +593,12 @@ def WriteIncrementalOTAPackage(target_zip, source_zip, output_zip):
   script.Mount("/system")
   script.AssertSomeFingerprint(source_fp, target_fp)
 
-  source_boot = common.GetBootableImage(
-      "/tmp/boot.img", "boot.img", OPTIONS.source_tmp, "BOOT")
-  target_boot = common.GetBootableImage(
-      "/tmp/boot.img", "boot.img", OPTIONS.target_tmp, "BOOT")
-  updating_boot = (source_boot.data != target_boot.data)
+#  source_boot = common.GetBootableImage(
+#      "/tmp/boot.img", "boot.img", OPTIONS.source_tmp, "BOOT")
+#  target_boot = common.GetBootableImage(
+#      "/tmp/boot.img", "boot.img", OPTIONS.target_tmp, "BOOT")
+#  updating_boot = (source_boot.data != target_boot.data)
+  updating_boot = false
 
   #source_recovery = common.GetBootableImage(
   #    "/tmp/recovery.img", "recovery.img", OPTIONS.source_tmp, "RECOVERY")
