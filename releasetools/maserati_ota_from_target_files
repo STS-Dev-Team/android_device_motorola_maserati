@@ -414,13 +414,12 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("*                                              *")
   script.Print("*            STS-Dev-Team presents             *")
   script.Print("*                                              *")
-  script.Print("*                ICS Droid4 Beta               *")
+  script.Print("*          CM9 Unofficial Droid4 Beta          *")
   script.Print("*                                              *")
   script.Print("*     Follow us  @hashcode0f and @dhacker29    *")
-  script.Print("*   Get the GApps at STS-Dev-Team.us.to/gapps  *")
+  script.Print("*        Get the GApps at goo.im/gapps         *")
   script.Print("*                                              *")
-  script.Print("*  And visit STS-Dev-Team.us.to, droidrzr.com  *")
-  script.Print("*        & mydroidworld.com for support        *")
+  script.Print("*     And visit droidhive.com for support      *")
   script.Print("*                                              *")
   script.Print("************************************************")
   script.Print(" ")
@@ -455,6 +454,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
 
   Item.GetMetadata(input_zip)
   Item.Get("system").SetPermissions(script)
+  script.SetPermissionsRecursive("/system/etc/init.d", 0, 0, 0755, 0555)
 
 #  common.CheckSize(boot_img.data, "boot.img", OPTIONS.info_dict)
 #  common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
@@ -467,13 +467,16 @@ def WriteFullOTAPackage(input_zip, output_zip):
   if OPTIONS.modelidcfg:
     script.RunConfig("")
 
+  script.Mount("/data")
+  script.RunFinalReleaseUtils()
+
   script.ShowProgress(0.2, 10)
 #  script.WriteRawImage("/boot", "boot.img")
 
   script.ShowProgress(0.1, 0)
   script.Print("Don't forget to install the GApps beforey you reboot.")
   script.Print("")
-  script.Print("Finished installing ICS for Droid 4, Enjoy!")
+  script.Print("Finished installing CM9 for Droid 4, Enjoy!")
   device_specific.FullOTA_InstallEnd()
 
   if OPTIONS.extra_script is not None:
