@@ -414,7 +414,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("*                                              *")
   script.Print("*            STS-Dev-Team presents             *")
   script.Print("*                                              *")
-  script.Print("*          CM9 Unofficial Droid4 Beta          *")
+  script.Print("*  CM9 Unofficial Droid4 ICS Leak (.200-.206)  *")
   script.Print("*                                              *")
   script.Print("*     Follow us  @hashcode0f and @dhacker29    *")
   script.Print("*        Get the GApps at goo.im/gapps         *")
@@ -474,9 +474,9 @@ def WriteFullOTAPackage(input_zip, output_zip):
 #  script.WriteRawImage("/boot", "boot.img")
 
   script.ShowProgress(0.1, 0)
-  script.Print("Don't forget to install the GApps beforey you reboot.")
+  script.Print("Don't forget to install the GApps if fresh install.")
   script.Print("")
-  script.Print("Finished installing CM9 for Droid 4, Enjoy!")
+  script.Print("Finished installing CM9 for Droid 4 Leak, Enjoy!")
   device_specific.FullOTA_InstallEnd()
 
   if OPTIONS.extra_script is not None:

@@ -93,7 +93,6 @@ find ./ -name \*.apk | $XARGS $OPTICHARGER
 rm $REPACK/ota/system/app/FmRxApp.apk
 rm $REPACK/ota/system/app/FmService.apk
 rm $REPACK/ota/system/app/FmTxApp.apk
-rm $REPACK/ota/system/app/Music.apk
 rm $REPACK/ota/system/app/RomManager.apk
 
 
@@ -155,7 +154,7 @@ REALDATE=`date +%m-%d`
 if [ -z "$CYANOGEN_NIGHTLY" ]; then
 	MODVERSION=`sed -n -e'/ro\.cm\.version/s/^.*=//p' $REPACK/ota/system/build.prop`
 	: ${MODVERSION:=nightly}
-    OUTFILE=$OUT/DROID4-CM9-$REALDATE-UNOFFICIAL.zip
+    OUTFILE=$OUT/DROID4-ICS-LEAK-CM9-$REALDATE-UNOFFICIAL.zip
 	echo MODVERSION: $MODVERSION
 else
 	OUTFILE=$OUT/update-squished.zip
