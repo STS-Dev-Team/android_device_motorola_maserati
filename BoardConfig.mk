@@ -71,8 +71,6 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BUILD_BOOTMENU_STANDALONE := true
 BOARD_HAS_LOCKED_BOOTLOADER := true
 TARGET_PREBUILT_RECOVERY_KERNEL := device/motorola/maserati/recovery-kernel
-#BOARD_CUSTOM_GRAPHICS := ../../../device/motorola/maserati/recovery/graphics.c
-#BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/motorola/maserati/recovery/recovery_ui.c
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 BOARD_ALWAYS_INSECURE := true
@@ -80,12 +78,15 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_MKE2FS := device/motorola/maserati/releaseutils/mke2fs
 BOARD_NONSAFE_SYSTEM_DEVICE := /dev/block/mmcblk1p20
 BOARD_HAS_SDCARD_INTERNAL := true
-#BOARD_HAS_SDEXT := false
 BOARD_HAS_WEBTOP := true
 TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /data/.recovery_mode; sync;"
 TARGET_RECOVERY_PRE_COMMAND_CLEAR_REASON := true
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 
+BOARD_HAS_VIRTUAL_KEYS := true
+BOARD_VIRTUAL_KEY_HEIGHT := 64
+BOARD_MAX_TOUCH_X := 1024
+BOARD_MAX_TOUCH_Y := 1024
 
 # Sandbox Filesystem Settings
 BOARD_SYSTEM_DEVICE := /dev/block/system

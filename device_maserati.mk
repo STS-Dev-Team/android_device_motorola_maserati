@@ -94,6 +94,7 @@ PRODUCT_PACKAGES += \
     Superuser \
     su \
     DockAudio \
+    safestrapmenu \
 
 PRODUCT_PACKAGES += \
     librs_jni \
