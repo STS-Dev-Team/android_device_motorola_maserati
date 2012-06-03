@@ -20,12 +20,12 @@ PRODUCT_PACKAGES := \
 
 # Audio - use stock ICS leak files for now
 PRODUCT_COPY_FILES += \
-    device/motorola/spyder/audio/alsa.omap4.so:/system/lib/hw/alsa.omap4.so \
-    device/motorola/spyder/audio/audio.a2dp.default.so:/system/lib/hw/audio.a2dp.default.so \
-    device/motorola/spyder/audio/audio.primary.omap4.so:/system/lib/hw/audio.primary.omap4.so \
-    device/motorola/spyder/audio/audio_policy.omap4.so:/system/lib/hw/audio_policy.omap4.so \
-    device/motorola/spyder/audio/libasound.so:/system/lib/libasound.so \
-    device/motorola/spyder/audio/libaudio_ext.so:/system/lib/libaudio_ext.so
+    device/motorola/maserati/audio/alsa.omap4.so:/system/lib/hw/alsa.omap4.so \
+    device/motorola/maserati/audio/audio.a2dp.default.so:/system/lib/hw/audio.a2dp.default.so \
+    device/motorola/maserati/audio/audio.primary.omap4.so:/system/lib/hw/audio.primary.omap4.so \
+    device/motorola/maserati/audio/audio_policy.omap4.so:/system/lib/hw/audio_policy.omap4.so \
+    device/motorola/maserati/audio/libasound.so:/system/lib/libasound.so \
+    device/motorola/maserati/audio/libaudio_ext.so:/system/lib/libaudio_ext.so
 
 PRODUCT_PACKAGES += \
     camera.omap4 \
