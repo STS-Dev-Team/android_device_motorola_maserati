@@ -126,8 +126,8 @@ PRODUCT_PACKAGES += \
     libjni_pinyinime 
 
 # WirelessTether
+PRODUCT_PACKAGES += wifi_tether_v3_1-beta14
 PRODUCT_COPY_FILES += \
-    device/motorola/maserati/prebuilt/app/wifi_tether_v3_1-beta14.apk:system/app/wifi_tether_v3_1-beta14.apk \
     device/motorola/maserati/prebuilt/lib/libwtnativetask.so:system/lib/libwtnativetask.so \
     device/motorola/maserati/prebuilt/bin/bootsound:system/bin/bootsound \
 #    device/motorola/maserati/prebuilt/media/android_audio.mp3:system/media/android_audio.mp3 \
