@@ -213,7 +213,7 @@ PRODUCT_COPY_FILES += \
 # stuff specific to ti OMAP4 hardware
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 $(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
-$(call inherit-product-if-exists, vendor/verizon/maserati-leak-verizon-vendor.mk)
+$(call inherit-product-if-exists, vendor/verizon/verizon-ics.mk)
 
 
 $(call inherit-product-if-exists, vendor/motorola/maserati/maserati-vendor.mk)
