@@ -160,6 +160,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/maserati/prebuilt/bin/battd:system/bin/battd \
     device/motorola/maserati/prebuilt/bin/hijack:system/bin/hijack \
     device/motorola/maserati/prebuilt/bin/hijack.log_dump:system/bin/hijack.log_dump \
+    device/motorola/maserati/prebuilt/bin/loadpreinstalls.sh:system/bin/loadpreinstalls.sh \
     device/motorola/maserati/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/maserati/prebuilt/bin/strace:system/bin/strace \
     device/motorola/maserati/prebuilt/bin/usbd:system/bin/usbd \
@@ -167,20 +168,6 @@ PRODUCT_COPY_FILES += \
     device/motorola/maserati/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/motorola/maserati/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/motorola/maserati/prebuilt/etc/hijack-boot.zip:system/etc/hijack-boot.zip \
-    device/motorola/maserati/prebuilt/usr/idc/evfwd.idc:system/usr/idc/evfwd.idc \
-    device/motorola/maserati/prebuilt/usr/idc/Motorola_Mobility_Motorola_HD_Dock.idc:system/usr/idc/Motorola_Mobility_Motorola_HD_Dock.idc \
-    device/motorola/maserati/prebuilt/usr/idc/qwerty.idc:system/usr/idc/qwerty.idc \
-    device/motorola/maserati/prebuilt/usr/idc/qwerty2.idc:system/usr/idc/qwerty2.idc \
-    device/motorola/maserati/prebuilt/usr/keychars/evfwd.kcm:system/usr/keychars/evfwd.kcm \
-    device/motorola/maserati/prebuilt/usr/keychars/omap4-keypad.kcm:system/usr/keychars/omap4-keypad.kcm \
-    device/motorola/maserati/prebuilt/usr/keychars/qwerty.kcm:system/usr/keychars/qwerty.kcm \
-    device/motorola/maserati/prebuilt/usr/keychars/qwerty2.kcm:system/usr/keychars/qwerty2.kcm \
-    device/motorola/maserati/prebuilt/usr/keylayout/atmxt-i2c.kl:system/usr/keylayout/atmxt-i2c.kl \
-    device/motorola/maserati/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-    device/motorola/maserati/prebuilt/usr/keylayout/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
-    device/motorola/maserati/prebuilt/usr/keylayout/evfwd.kl:system/usr/keylayout/evfwd.kl \
-    device/motorola/maserati/prebuilt/usr/keylayout/omap4-keypad.kl:system/usr/keylayout/omap4-keypad.kl \
-    device/motorola/maserati/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
 
 
 # Phone settings

@@ -9,9 +9,6 @@ ro.sf.lcd_density=240
 ro.mot.ril.danlist=611,*611,#611
 persist.ril.ecclist=911,*911,#911
 
-# Custom RIL for Motorola LTE phones
-#ro.telephony.ril_class=MotoSIMNotReadyRIL
-
 # Enable ALWAYS_READ_IMSI_FROM_SIM
 persist.ril.features=800
 persist.ril.modem.mode =1
@@ -259,12 +256,11 @@ ro.media.capture.fast.fps=4
 ro.media.capture.slow.fps=120
 ro.media.capture.flash=led
 ro.media.capture.flashMinV=3300000
-ro.media.capture.torchIntensity=40
+ro.media.capture.torchIntensity=28
 ro.media.capture.flashIntensity=100
 ro.media.capture.classification=classF
 ro.media.panorama.defres=3264x1840
 ro.media.panorama.frameres=1280x720
-ro.sf.lcd_density=240
 ro.mot.phonemode.vzw4gphone=1
 ro.mot.lte_on_cdma=1
 ro.mot.tmp.telephony.refactor=true
@@ -276,9 +272,11 @@ ril.rat=LTE
 lte_ril.netcfg_to=90
 ro.telephony.call_ring.multiple=false
 ro.cdma.homesystem=64,65,76,77,78,79,80,81,82,83
+ro.com.android.dataroaming=true
 ro.cdma.data_retry_config=max_retries=infinite,0,0,10000,10000,100000,10000,10000,10000,10000,140000,540000,960000
 ro.gsm.data_retry_config=default_randomization=2000,max_retries=infinite,0,0,80000,125000,485000,905000
 ro.gsm.2nd_data_retry_config=max_retries=infinite,default_randomization=2000,0,0,80000,125000,485000,905000
+dalvik.vm.dexopt-flags=m=y
 net.bt.name=Android
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
 ro.mot.dpmext=true
@@ -287,10 +285,11 @@ ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
 ro.build.version.full=ICS_Version.4.0.4_r1.2.XT894.Verizon.en.US
 ro.mot.hidden_keyboards=evfwd
+ro.mot.build.version.sdk_int=6
 persist.sys.usb.config=mass_storage,adb
 
 # Additions
 com.ti.omap_enhancement=true
 hwui.render_dirty_regions=false
-ro.rommanager.developerid=Hashcode
-ro.modversion=Droid4-ICS-Alpha
+ril.subscription.types=NV,RUIM
+ro.ril.moto.newarch=true

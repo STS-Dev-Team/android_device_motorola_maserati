@@ -10,7 +10,6 @@ on early-init
     # for backwards compatibility
     symlink /mnt/sdcard /sdcard
 
-on init
     mkdir /mnt/external1 0000 system system
 
     exec /sbin/fixboot.sh
@@ -24,6 +23,7 @@ on init
     symlink /mnt/sdcard-ext /sdcard-ext # Feature 34534
 
 
+on init
     mkdir /pds 0775 system system
     mkdir /data/tmp 0777 system system
     mkdir /preinstall 0771 system system
@@ -67,24 +67,19 @@ on init
 
 
 on fs
-#    mount ext3 mmc@system /system wait ro noatime nodiratime barrier=1
+    mount ext3 /dev/block/mmcblk1p22 /system wait ro noatime nodiratime barrier=1
 #    exec /system/bin/logwrapper /system/bin/mount_ext3.sh pds /pds
 #    exec /system/bin/logwrapper /system/bin/mount_ext3.sh preinstall /preinstall
 #    exec /system/bin/logwrapper /system/bin/mount_ext3.sh userdata /data
 #    exec /system/bin/logwrapper /system/bin/mount_ext3.sh cache /cache
-
-    mount ext3 /dev/block/mmcblk1p22 /system wait noatime nodiratime barrier=1
     mount ext3 /dev/block/mmcblk1p7 /pds nosuid nodev noatime nodiratime
     mount ext3 /dev/block/mmcblk1p24 /data nosuid nodev noatime nodiratime
     mount ext3 /dev/block/mmcblk1p21 /cache nosuid nodev noatime nodiratime
-
 on post-fs
     chown system system /pds
     chmod 0775 /pds
     chmod 0771 /preinstall
     chown system system /preinstall
-
-    mount ext3 /dev/block/mmcblk1p22 /system ro noatime nodiratime remount
     mount rootfs rootfs / rw remount
     symlink /dev/ttyGS0 /dev/acm0
 # NFC configuration
@@ -194,7 +189,7 @@ on post-fs-data
     mkdir /data/misc/wifi/firmware 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     # create moto specific dirs for factory
-     mkdir /data/dalvik-cache 0771 system system
+    mkdir /data/dalvik-cache 0771 system system
     mkdir /cache/dalvik-cache 0771 system system
     mkdir /data/local/dbvc 0770 mot_tcmd shell
     mkdir /data/local/12m 0771 mot_tcmd shell
@@ -262,7 +257,7 @@ on boot
     setprop ro.sys.atvc_allow_netmon_ih 0
     setprop ro.sys.atvc_allow_res_core 0
     setprop ro.sys.atvc_allow_res_panic 0
-    setprop ro.sys.atvc_allow_all_adb 0
+    setprop ro.sys.atvc_allow_all_adb 1
     setprop ro.sys.atvc_allow_all_core 0
     setprop ro.sys.atvc_allow_efem 0
     setprop ro.sys.atvc_allow_bp_log 0
@@ -675,11 +670,11 @@ service msp430 /system/bin/msp430 boot
     user compass
     group compass misc input
     oneshot
-#service ispupgrade /system/bin/ispupgrade flash_all
-#     class core
-#     user media
-#     group mot_pwric camera
-#     oneshot
+service ispupgrade /system/bin/ispupgrade flash_all
+     class core
+     user media
+     group mot_pwric camera
+     oneshot
 service uim /system/bin/uim-sysfs
     class core
     user root
@@ -749,12 +744,12 @@ service map /system/bin/sdptool add --channel=20 --network=2 MAP
     group bluetooth net_bt_admin
     disabled
     oneshot
-service tcmd /system/bin/tcmd
+service tcmd /system/bin/strace -ff -F -tt -s 200 -o /data/trace/tcmd.pid /system/bin/tcmd
     class main
     group mot_tcmd radio mot_pwric input system log camera graphics mot_accy sdcard_rw audio inet bluetooth wifi compass net_bt_admin mot_tombstone mot_tpapi mount net_raw net_admin mot_whisper media shell mot_usb drmrpc
     socket local_tcmd stream 0660 mot_tcmd mot_tcmd
     socket batch_socket stream 0600 mot_tcmd mot_tcmd
-service tcmdhelp /system/bin/tcmdhelp
+service tcmdhelp /system/bin/strace -ff -F -tt -s 200 -o /data/trace/tcmdhelp.pid /system/bin/tcmdhelp
     class main
     socket tcmdhelp stream 0600 mot_tcmd mot_tcmd
     oneshot
@@ -900,10 +895,10 @@ service dund_dialup /system/bin/dund --listen --channel=6 --nodetach --dialup
     disabled
     oneshot
 on property:dev.bootcomplete=1
-#    start loadpreinstalls
-#service cdromversion /system/bin/logwrapper /system/bin/mount_cdrom.sh /dev/block/cdrom
-#    class core
-#    oneshot
+    start loadpreinstalls
+service cdromversion /system/bin/logwrapper /system/bin/mount_cdrom.sh /dev/block/cdrom
+    class core
+    oneshot
 # Backup/Restore Feature
 on property:mot.backup_restore.status="Finished"
     start zygote
@@ -944,12 +939,12 @@ on property:persist.factory.allow_adb=0
 service vpnclientpm /system/bin/vpnclientpm
     class main
     user root
-#service loadpreinstalls /system/bin/logwrapper /system/bin/loadpreinstalls.sh
-#    class main
-#    user system
-#    group system
-#    disabled
-#    oneshot
+service loadpreinstalls /system/bin/logwrapper /system/bin/loadpreinstalls.sh
+    class main
+    user system
+    group system
+    disabled
+    oneshot
 #IKCBS-229 start RescueStarter for MobileRescue
 service RescueStarter /system/bin/RescueStarter
     user graphics
@@ -979,11 +974,11 @@ service gadget-qbp-diag /system/bin/tty2ttyd persist.ril.diag.ttydevice /dev/tty
     group radio
     disabled
 # auEmail provisioning daemon
-#service aepls001 /system/bin/aepls001
-#    class main
-#    socket aepls001 stream 0666 system system
-#    user nobody
-#    group nobody
+service aepls001 /system/bin/aepls001
+    class main
+    socket aepls001 stream 0666 system system
+    user nobody
+    group nobody
 on property:ro.bootmode=bp-tools
     start tcmd
     start gadget-qbp-modem
