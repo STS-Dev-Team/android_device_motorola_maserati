@@ -168,6 +168,9 @@ PRODUCT_COPY_FILES += \
     device/motorola/maserati/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/motorola/maserati/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
     device/motorola/maserati/prebuilt/etc/hijack-boot.zip:system/etc/hijack-boot.zip \
+    device/motorola/maserati/prebuilt/usr/idc/omap4-keypad.idc:system/usr/idc/omap4-keypad.idc \
+    device/motorola/maserati/prebuilt/usr/keychar/omap4-keypad.kcm:system/usr/keychar/omap4-keypad.kcm \
+    device/motorola/maserati/prebuilt/usr/keylayout/omap4-keypad.kl:system/usr/keylayout/omap4-keypad.kl \
 
 
 # Phone settings
