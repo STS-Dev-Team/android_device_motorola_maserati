@@ -3,6 +3,7 @@ USE_CAMERA_STUB := false
 BOARD_USES_TI_CAMERA_HAL := true
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
+ENABLE_WEBGL := true
 
 # inherit from the proprietary version
 -include vendor/motorola/maserati/BoardConfigVendor.mk
@@ -79,8 +80,6 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BUILD_BOOTMENU_STANDALONE := true
 BOARD_HAS_LOCKED_BOOTLOADER := true
 TARGET_PREBUILT_RECOVERY_KERNEL := device/motorola/maserati/recovery-kernel
-#BOARD_CUSTOM_GRAPHICS := ../../../device/motorola/maserati/recovery/graphics.c
-#BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/motorola/maserati/recovery/recovery_ui.c
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_ALWAYS_INSECURE := true
 BOARD_HAS_LARGE_FILESYSTEM := true
