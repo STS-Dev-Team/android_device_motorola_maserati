@@ -286,6 +286,7 @@ ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/
 ro.build.version.full=ICS_Version.4.0.4_r1.2.XT894.Verizon.en.US
 ro.mot.hidden_keyboards=evfwd
 ro.mot.build.version.sdk_int=6
+ro.setupwizard.enable_bypass=1
 persist.sys.usb.config=mass_storage,adb
 
 # Additions
