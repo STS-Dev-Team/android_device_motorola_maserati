@@ -114,14 +114,14 @@ PRODUCT_COPY_FILES += \
 
 # Kexec files
 PRODUCT_COPY_FILES += \
-    device/motorola/solana/kexec/arm_kexec.ko:system/etc/kexec/arm_kexec.ko \
-    device/motorola/solana/kexec/atags:system/etc/kexec/atags \
-    device/motorola/solana/kexec/devtree:system/etc/kexec/devtree \
-    device/motorola/solana/kexec/kexec:system/etc/kexec/kexec \
-    device/motorola/solana/kexec/kexec.ko:system/etc/kexec/kexec.ko \
-    device/motorola/solana/kexec/uart.ko:system/etc/kexec/uart.ko \
-    out/target/product/solana/ramdisk.img:system/etc/kexec/ramdisk.img \
-    out/target/product/solana/kernel:system/etc/kexec/kernel \
+    device/motorola/maserati/kexec/arm_kexec.ko:system/etc/kexec/arm_kexec.ko \
+    device/motorola/maserati/kexec/atags:system/etc/kexec/atags \
+    device/motorola/maserati/kexec/devtree:system/etc/kexec/devtree \
+    device/motorola/maserati/kexec/kexec:system/etc/kexec/kexec \
+    device/motorola/maserati/kexec/kexec.ko:system/etc/kexec/kexec.ko \
+    device/motorola/maserati/kexec/uart.ko:system/etc/kexec/uart.ko \
+    out/target/product/maserati/ramdisk.img:system/etc/kexec/ramdisk.img \
+    out/target/product/maserati/kernel:system/etc/kexec/kernel \
 
 # Permissions files
 PRODUCT_COPY_FILES += \
