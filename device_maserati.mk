@@ -149,7 +149,7 @@ PRODUCT_COPY_FILES += \
     device/motorola/maserati/prebuilt/bin/battd:system/bin/battd \
     device/motorola/maserati/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     device/motorola/maserati/prebuilt/bin/strace:system/bin/strace \
-    device/motorola/spyder/prebuilt/etc/firmware/ducati-m3.bin:/system/etc/firmware/ducati-m3.bin \
+    device/motorola/maserati/prebuilt/etc/firmware/ducati-m3.bin:/system/etc/firmware/ducati-m3.bin \
     device/motorola/maserati/prebuilt/etc/gps.conf:system/etc/gps.conf \
     device/motorola/maserati/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/motorola/maserati/prebuilt/etc/vold.fstab:system/etc/vold.fstab \

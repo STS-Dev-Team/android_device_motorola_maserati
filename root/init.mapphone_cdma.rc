@@ -78,7 +78,8 @@ on post-fs
     chmod 0775 /pds
 #    chmod 0771 /preinstall
 #    chown system system /preinstall
-    mount ext3 /dev/block/mmcblk1p23 /system ro noatime nodiratime remount
+
+    mount ext3 /dev/block/mmcblk1p22 /system ro noatime nodiratime remount
     mount rootfs rootfs / rw remount
     symlink /dev/ttyGS0 /dev/acm0
 # NFC configuration
