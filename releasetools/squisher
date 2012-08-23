@@ -27,6 +27,8 @@ if [ "$TARGET_BUILD_TYPE" = "debug" ]; then
     OTAPACKAGE=$OUT/${TARGET_PRODUCT}_debug-ota-$TARGET_BUILD_VARIANT.$USER.zip
 elif [ "$TARGET_BUILD_VARIANT" = "userdebug" ]; then
     OTAPACKAGE=$OUT/$TARGET_PRODUCT-ota-eng.$USER.zip
+elif [ "$TARGET_BUILD_VARIANT" = "user" ]; then
+    OTAPACKAGE=$OUT/$TARGET_PRODUCT-ota-eng.$USER.zip
 else
     OTAPACKAGE=$OUT/$TARGET_PRODUCT-ota-$TARGET_BUILD_VARIANT.$USER.zip
 fi
@@ -53,10 +55,25 @@ cd $REPACK/ota
 printf "Unpacking $OTAPACKAGE..."
 unzip $QUIET $OTAPACKAGE
 echo
-cd $REPACK/ota/system/framework
-$OPTICHARGER framework-res.apk
-cd $REPACK/ota/system/app
+
+# Move all apks to the same directory so xargs can
+# use also with framework-res.apk. This allow process
+# framework-res.apk in parallel with other apks
+mkdir -p $REPACK/parallel
+cd $REPACK/parallel
+cp $REPACK/ota/system/framework/framework-res.apk .
+cp $REPACK/ota/system/app/*.apk .
+
+# Do optimization in parallel
 find ./ -name \*.apk | $XARGS $OPTICHARGER
+
+# Move optimized apks to repack directory
+mv -f $REPACK/parallel/framework-res.apk $REPACK/ota/system/framework/framework-res.apk
+mv -f $REPACK/parallel/*.apk $REPACK/ota/system/app/
+
+# Return to directory
+cd $REPACK/ota
+rm -rf $REPACK/parallel
 )
 
 # Remove unwanted Apps
@@ -82,8 +99,8 @@ rm -rf $REPACK/ota/recovery
 [ -d $REPACK/ota/system/lib/modules ] && \
 	find $REPACK/ota/system/lib/modules -name "*.ko" -print0 | xargs -0 arm-eabi-strip --strip-unneeded
 
-# Copy libvoicesearch as it's getting messed up in the build
-cp -f $ANDROID_BUILD_TOP/device/motorola/maserati/prebuilt/lib/libvoicesearch.so $REPACK/ota/system/lib/libvoicesearch.so
+# move gralloc to where it will be recognized
+cp -f $REPACK/ota/system/vendor/lib/hw/gralloc.omap4430.so $REPACK/ota/system/vendor/lib/hw/gralloc.omap4.so
 
 # Determine what to name the new signed package
 MODVERSION=`sed -n -e'/ro\.cm\.version/s/^.*=//p' $REPACK/ota/system/build.prop`
@@ -97,7 +114,7 @@ echo
 printf "Signing package..."
 SECURITYDIR=$ANDROID_BUILD_TOP/build/target/product/security
 java -Xmx1536m \
-	-jar $ANDROID_BUILD_TOP/out/host/$OUT_TARGET_HOST/framework/signapk.jar \
+	-jar $OUT/../../../host/$OUT_TARGET_HOST/framework/signapk.jar \
 	-w $SECURITYDIR/testkey.x509.pem $SECURITYDIR/testkey.pk8 \
 	$REPACK/update.zip $OUTFILE
 echo
