@@ -98,14 +98,23 @@ rm -rf $REPACK/ota/recovery
 # Strip modules
 [ -d $REPACK/ota/system/lib/modules ] && \
 	find $REPACK/ota/system/lib/modules -name "*.ko" -print0 | xargs -0 arm-eabi-strip --strip-unneeded
+if [ "$TARGET_PRODUCT" = "full_maserati" ]; then
+cp -f $ANDROID_BUILD_TOP/device/motorola/maserati/prebuilt/bin/su $REPACK/ota/system/xbin/su
+fi
 
 # move gralloc to where it will be recognized
 cp -f $REPACK/ota/system/vendor/lib/hw/gralloc.omap4430.so $REPACK/ota/system/vendor/lib/hw/gralloc.omap4.so
 
 # Determine what to name the new signed package
+REALDATE=`date +%m-%d`
+if [ -f $ANDROID_BUILD_TOP/vendor/cm/LICENSE ];
+then
 MODVERSION=`sed -n -e'/ro\.cm\.version/s/^.*=//p' $REPACK/ota/system/build.prop`
 OUTFILE=$OUT/KEXEC-cm-$MODVERSION.zip
 echo MODVERSION: $MODVERSION
+else
+OUTFILE=$OUT/$TARGET_PRODUCT-JB-$REALDATE.zip
+fi
 
 # Pack it up and sign
 printf "Zipping package..."

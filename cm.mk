@@ -1,11 +1,13 @@
 # Inherit device configuration for VZW Droid 4.
-$(call inherit-product, device/motorola/maserati/device_maserati.mk)
+$(call inherit-product, device/motorola/maserati/full_maserati.mk)
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit some common CM stuff.
 #$(call inherit-product, vendor/cm/config/gsm.mk)
+
+DEVICE_PACKAGE_OVERLAYS += device/motorola/maserati/overlay/cm
 
 #
 # Setup device specific product configuration.
@@ -17,14 +19,14 @@ PRODUCT_DEVICE_PREFIX := cdma
 PRODUCT_MODEL := XT894
 PRODUCT_MANUFACTURER := Motorola
 PRODUCT_SFX := vzw
-ANDROID_VERSION := 4.0.4_r1.2
+ANDROID_VERSION := 4.1.1_r4
 #MOTOROLA_BUILD_ID := 6.7.2_180_DR4-16_M2-37
-MOTOROLA_BUILD_ID := IMM76L
+MOTOROLA_BUILD_ID := JRO03C
 MOTOROLA_SOFTWARE_VERSION := 6.16.217
 DEVELOPER_NAME := hashcode
-DEVELOPER_HOST := rombot.droidhive.com
-DEVELOPMENT_STAGE := Beta
-TARGET_BOOTANIMATION_NAME := vertical-540
+DEVELOPER_HOST := hashcode-unn
+DEVELOPMENT_STAGE := Alpha
+TARGET_BOOTANIMATION_NAME := vertical-540x960
 
 # Release name and versioning
 PRODUCT_RELEASE_NAME := Droid4
@@ -39,7 +41,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
    TARGET_DEVICE=${PRODUCT_DEVICE_PREFIX}_${PRODUCT_DEVICE} \
    TARGET_BUILD_TYPE=user \
    BUILD_VERSION_TAGS=release-keys \
-   BUILD_DISPLAY_ID=ICS_${DEVELOPMENT_STAGE}_${MOTOROLA_BUILD_ID} \
+   BUILD_DISPLAY_ID=JB_${DEVELOPMENT_STAGE}_${MOTOROLA_BUILD_ID} \
    BUILD_FINGERPRINT=${PRODUCT_BRAND}/${PRODUCT_DEVICE}_${PRODUCT_SFX}/${PRODUCT_DEVICE_PREFIX}_${PRODUCT_DEVICE}:${ANDROID_VERSION}/${MOTOROLA_BUILD_ID}/${DATE}:user/release-keys \
    PRIVATE_BUILD_DESC="${PRODUCT_DEVICE_PREFIX}_${PRODUCT_DEVICE}-user ${ANDROID_VERSION} ${MOTOROLA_BUILD_ID} ${DATE} release-keys" \
    PRODUCT_BRAND=${PRODUCT_BRAND} \

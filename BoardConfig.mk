@@ -1,7 +1,16 @@
+# define OMAP_ENHANCEMENT variables
+include device/motorola/maserati/Config.mk
+
 # Camera
 USE_CAMERA_STUB := false
 BOARD_USES_TI_CAMERA_HAL := true
 TI_CAMERAHAL_DEBUG_ENABLED := true
+
+OMAP_ENHANCEMENT_MULTIGPU := true
+
+ENHANCED_DOMX := true
+#USE_ITTIAM_AAC := true
+#BLTSVILLE_ENHANCEMENT :=true
 
 # inherit from the proprietary version
 -include vendor/motorola/maserati/BoardConfigVendor.mk
@@ -18,8 +27,6 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_ARCH_VARIANT_CPU := cortex-a9
 TARGET_ARCH_VARIANT_FPU := neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
-NEEDS_ARM_ERRATA_754319_754320 := true
-TARGET_GLOBAL_CFLAGS += -DNEEDS_ARM_ERRATA_754319_754320
 
 
 # Kernel
@@ -30,7 +37,6 @@ BOARD_PAGE_SIZE := 0x4096
 # Kernel Build
 TARGET_KERNEL_SOURCE := kernel/motorola/mapphone
 TARGET_KERNEL_CONFIG := hashcode_1024_defconfig
-TARGET_PREBUILT_KERNEL := device/motorola/maserati/kernel
 
 WLAN_MODULES:
 	make clean -C hardware/ti/wlan/mac80211/compat_wl12xx
@@ -42,34 +48,33 @@ WLAN_MODULES:
 	mv hardware/ti/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx_spi.ko $(KERNEL_MODULES_OUT)
 	mv hardware/ti/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx_sdio.ko $(KERNEL_MODULES_OUT)
 
-SGX_MODULES:
-	make clean -C vendor/motorola/common/proprietary/imgtec/eurasia_km/eurasiacon/build/linux2/omap4430_android
-	cp kernel/motorola/mapphone/drivers/video/omap2/omapfb/omapfb.h $(KERNEL_OUT)/drivers/video/omap2/omapfb/omapfb.h
-	make -j8 -C vendor/motorola/common/proprietary/imgtec/eurasia_km/eurasiacon/build/linux2/omap4430_android ARCH=arm KERNEL_CROSS_COMPILE=arm-eabi- CROSS_COMPILE=arm-eabi- KERNELDIR=$(KERNEL_OUT) TARGET_PRODUCT="blaze_tablet" BUILD=release TARGET_SGX=540 PLATFORM_VERSION=4.0
-	mv $(KERNEL_OUT)/../../target/kbuild/pvrsrvkm_sgx540_120.ko $(KERNEL_MODULES_OUT)
-
-TARGET_KERNEL_MODULES := WLAN_MODULES SGX_MODULES
+TARGET_KERNEL_MODULES += WLAN_MODULES
 
 
 # Storage / Sharing
 BOARD_VOLD_MAX_PARTITIONS := 100
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
 BOARD_MTP_DEVICE := "/dev/mtp"
 
 # Connectivity - Wi-Fi
+USES_TI_MAC80211 := true
+ifdef USES_TI_MAC80211
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wl12xx
+WPA_SUPPLICANT_VERSION           := VER_0_8_X_TI
 BOARD_HOSTAPD_DRIVER             := NL80211
 PRODUCT_WIRELESS_TOOLS           := true
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_wl12xx
 BOARD_WLAN_DEVICE                := wl12xx_mac80211
 BOARD_SOFTAP_DEVICE              := wl12xx_mac80211
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wl12xx_sdio.ko"
 WIFI_DRIVER_MODULE_NAME          := "wl12xx_sdio"
 WIFI_FIRMWARE_LOADER             := ""
 COMMON_GLOBAL_CFLAGS += -DUSES_TI_MAC80211
+endif
+
+# adb has root
+ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
+ADDITIONAL_DEFAULT_PROPERTIES += ro.allow.mock.location=1
 
 # Audio
 BOARD_USES_GENERIC_AUDIO := false
@@ -78,7 +83,7 @@ BUILD_WITH_ALSA_UTILS := true
 HAVE_2_3_DSP := 1
 TARGET_PROVIDES_LIBAUDIO := true
 BOARD_USE_MOTO_DOCK_HACK := true
-
+COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -91,7 +96,7 @@ BUILD_BOOTMENU_STANDALONE := true
 BOARD_HAS_WEBTOP := true
 TARGET_PREBUILT_RECOVERY_KERNEL := device/motorola/maserati/recovery-kernel
 BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
+BOARD_UMS_LUNFILE := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
 BOARD_ALWAYS_INSECURE := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_MKE2FS := device/motorola/maserati/releaseutils/mke2fs
@@ -107,11 +112,6 @@ BOARD_VIRTUAL_KEY_HEIGHT := 64
 BOARD_MAX_TOUCH_X := 1024
 BOARD_MAX_TOUCH_Y := 1024
 
-# Sandbox Filesystem Settings
-BOARD_SYSTEM_DEVICE := /dev/block/system
-BOARD_SYSTEM_FILESYSTEM_OPTIONS := noatime,nodiratime
-BOARD_SYSTEM_FILESYSTEM := ext3
-
 
 # Graphics
 BOARD_EGL_CFG := device/motorola/maserati/prebuilt/etc/egl.cfg
@@ -119,16 +119,20 @@ USE_OPENGL_RENDERER := true
 #COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
 
 
-# OMAP
-OMAP_ENHANCEMENT := true
 ifdef OMAP_ENHANCEMENT
 COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT -DTARGET_OMAP4
-endif
-
-ENHANCED_DOMX := true
-USE_ITTIAM_AAC := true
 ifdef USE_ITTIAM_AAC
 COMMON_GLOBAL_CFLAGS += -DUSE_ITTIAM_AAC
+endif
+ifdef OMAP_ENHANCEMENT_S3D
+COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT_S3D
+endif
+ifdef OMAP_ENHANCEMENT_CPCAM
+COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT_CPCAM
+endif
+ifdef OMAP_ENHANCEMENT_VTC
+COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT_VTC
+endif
 endif
 
 # MOTOROLA
@@ -160,3 +164,6 @@ BOARD_USES_SECURE_SERVICES := true
 BOARD_USES_KEYBOARD_HACK := true
 BOARD_HAS_MAPPHONE_SWITCH := true
 USE_IPV6_ROUTE := true
+
+# Common device independent definitions
+include device/ti/common-open/BoardConfig.mk
