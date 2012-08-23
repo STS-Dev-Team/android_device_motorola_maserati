@@ -30,7 +30,6 @@ BOARD_PAGE_SIZE := 0x4096
 # Kernel Build
 TARGET_KERNEL_SOURCE := kernel/motorola/mapphone
 TARGET_KERNEL_CONFIG := hashcode_1024_defconfig
-TARGET_PREBUILT_KERNEL := device/motorola/maserati/kernel
 
 WLAN_MODULES:
 	make clean -C hardware/ti/wlan/mac80211/compat_wl12xx
@@ -42,13 +41,7 @@ WLAN_MODULES:
 	mv hardware/ti/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx_spi.ko $(KERNEL_MODULES_OUT)
 	mv hardware/ti/wlan/mac80211/compat_wl12xx/drivers/net/wireless/wl12xx/wl12xx_sdio.ko $(KERNEL_MODULES_OUT)
 
-SGX_MODULES:
-	make clean -C vendor/motorola/common/proprietary/imgtec/eurasia_km/eurasiacon/build/linux2/omap4430_android
-	cp kernel/motorola/mapphone/drivers/video/omap2/omapfb/omapfb.h $(KERNEL_OUT)/drivers/video/omap2/omapfb/omapfb.h
-	make -j8 -C vendor/motorola/common/proprietary/imgtec/eurasia_km/eurasiacon/build/linux2/omap4430_android ARCH=arm KERNEL_CROSS_COMPILE=arm-eabi- CROSS_COMPILE=arm-eabi- KERNELDIR=$(KERNEL_OUT) TARGET_PRODUCT="blaze_tablet" BUILD=release TARGET_SGX=540 PLATFORM_VERSION=4.0
-	mv $(KERNEL_OUT)/../../target/kbuild/pvrsrvkm_sgx540_120.ko $(KERNEL_MODULES_OUT)
-
-TARGET_KERNEL_MODULES := WLAN_MODULES SGX_MODULES
+TARGET_KERNEL_MODULES := WLAN_MODULES
 
 
 # Storage / Sharing
@@ -106,11 +99,6 @@ BOARD_HAS_VIRTUAL_KEYS := true
 BOARD_VIRTUAL_KEY_HEIGHT := 64
 BOARD_MAX_TOUCH_X := 1024
 BOARD_MAX_TOUCH_Y := 1024
-
-# Sandbox Filesystem Settings
-BOARD_SYSTEM_DEVICE := /dev/block/system
-BOARD_SYSTEM_FILESYSTEM_OPTIONS := noatime,nodiratime
-BOARD_SYSTEM_FILESYSTEM := ext3
 
 
 # Graphics

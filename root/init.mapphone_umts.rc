@@ -67,6 +67,7 @@ on fs
 on post-fs
 # Enable PVR modules
     insmod /system/lib/modules/pvrsrvkm_sgx540_120.ko
+    insmod /system/lib/modules/omaplfb_sgx540_120.ko
 
     chown system system /pds
     chmod 0775 /pds
@@ -147,8 +148,6 @@ on post-fs
     insmod /system/lib/modules/modem_pm_driver.ko
 # Install product specific kernel modules
     exec /system/bin/load_modules.sh
-# Install webtop kernel modules
-    insmod /system/lib/modules/evfwd.ko
 # chown/chmod for FOTA
     chown system system /cache/fota
     chmod 0770 /cache/fota
@@ -265,17 +264,6 @@ on boot
     setprop ro.sys.atvc_allow_ap_mot_log 0
     setprop ro.sys.atvc_allow_simswap 0
     setprop ro.sys.atvc_allow_gki_log 0
-# OSH properties
-#    setprop sys.SystemMode RM_SM_MOBILE
-#    setprop sys.FbOwner 3
-#    setprop sys.DispOwnerLcd 3
-#    setprop sys.DispOwnerHdmi 7
-#    setprop sys.AiwFocus 3
-#    setprop sys.AMActiveTask 2
-    # display fb2 on overlay 0 for trackpad
-#    write /sys/class/graphics/fb2/overlays 3
-#    write /sys/class/graphics/fb0/overlays 2
-#    write /sys/class/graphics/fb2/overlays 0
 # Change the ownership of led files.
    chown system system /sys/class/leds/lcd-backlight/als
    chown system system /sys/class/leds/lcd-backlight/pwm_mode
@@ -627,27 +615,6 @@ on property:ro.hdcp.support=1
 on property:ro.hdcp.support=2
     chown system media /dev/omap-hdcp
     chmod 0660 /dev/omap-hdcp
-# The following services are added by moto
-#service qe /xbin/qe /system
-#    class core
-#    oneshot
-# Set property strings for ATVC logging
-# This conditionally sets :
-# ro.sys.atvc_allow_bp_log
-# ro.sys.atvc_allow_gki_log
-# ro.sys.atvc_allow_ap_mot_log
-# ro.sys.atvc_allow_all_core
-# ro.sys.atvc_allow_res_core
-# ro.sys.atvc_allow_res_panic
-# ro.sys.atvc_allow_efem
-# ro.sys.atvc_allow_netmon_usb
-# ro.sys.atvc_allow_netmon_ih
-# ro.sys.atvc_allow_all_adb
-#service atvc /system/bin/dbvc_atvc_property_set
-#    class core
-#    user system
-#    group system mot_tpapi
-#    oneshot
 service nvm-daemon /system/usr/bin/nvm_daemon
     class core
     user radio
@@ -681,11 +648,6 @@ service msp430 /system/bin/msp430 boot
     user compass
     group compass misc input
     oneshot
-#service ispupgrade /system/bin/ispupgrade flash_all
-#     class core
-#     user media
-#     group mot_pwric camera
-#     oneshot
 service bplogd_daemon /system/usr/bin/bplogd_daemon
     class core
     socket dlog_cmds stream 660 radio log
@@ -818,10 +780,6 @@ service akmd8975 /system/bin/akmd8975
     group compass misc input
 service wpa_supplicant /system/bin/wpa_supplicant -Dnl80211 -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf
     class main
-# we will start as root and wpa_supplicant will switch to user wifi
-# after setting up the capabilities required for WEXT
-# user wifi
-# group wifi inet keystore
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
@@ -902,29 +860,13 @@ service fmradio /system/bin/fmradioserver
     user system
     group bluetooth net_bt_admin net_raw net_admin misc
     disabled
-service dlnasrv /system/bin/dlnasrv
-    class main
-    user mot_dlna
-    group system net_admin sdcard_rw new_raw inet mount misc
-    oneshot
-    disabled
 service dund_dialup /system/bin/dund --listen --channel=6 --nodetach --dialup
     class main
     group net_bt net_bt_admin
     disabled
     oneshot
 on property:dev.bootcomplete=1
-    start loadpreinstalls
-service cdromversion /system/bin/logwrapper /system/bin/mount_cdrom.sh /dev/block/cdrom
-    class core
-    oneshot
-# Backup/Restore Feature
-on property:mot.backup_restore.status="Finished"
-    start zygote
-service mot_backup /system/bin/logwrapper /system/xbin/run_backup /system/etc/backup_targets.csv
-    disabled
-    user root
-    oneshot
+#    start loadpreinstalls
 service secclkd /system/bin/secclkd
     class main
     socket secclk_socket stream 660 mot_secclkd mot_secclkd
@@ -945,21 +887,6 @@ on property:persist.factory.allow_adb=1
     write /sys/class/android_usb/android0/pc_command_adb "adb"
 on property:persist.factory.allow_adb=0
     write /sys/class/android_usb/android0/pc_command_adb " "
-#start Authentec VPN service
-#service vpnclientpm /system/bin/vpnclientpm
-#    class main
-#    user root
-#service loadpreinstalls /system/bin/logwrapper /system/bin/loadpreinstalls.sh
-#    class main
-#    user system
-#    group system
-#    disabled
-#    oneshot
-#IKCBS-229 start RescueStarter for MobileRescue
-service RescueStarter /system/bin/RescueStarter
-    user graphics
-    group input graphics
-    class main
 service gadget-lte-modem /system/bin/tty2ttyd ril.wrigley.modem.tty /dev/ttyGS1 0 512
     user radio
     group radio
@@ -975,21 +902,11 @@ service logcatd-blan /system/bin/logcatd-blan
     # user system
     # group system log inet
     disabled
-# auEmail provisioning daemon
-service aepls001 /system/bin/aepls001
-    class main
-    socket aepls001 stream 0666 system system
-    user nobody
-    group nobody
 on property:ro.bootmode=bp-tools
     start tcmd
     write /proc/sys/net/ipv4/ip_forward 1
     start wrigley-diag
     start logcatd-blan
-service JuniperVPNTools /system/bin/JuniperVPNTools
-    class main
-    user vpn
-    group vpn net_admin net_raw
 service thermal_manager /system/bin/thermaldaemon
     class main
     user system

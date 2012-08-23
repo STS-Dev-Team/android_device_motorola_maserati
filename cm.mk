@@ -1,5 +1,5 @@
 # Inherit device configuration for VZW Droid 4.
-$(call inherit-product, device/motorola/maserati/device_maserati.mk)
+$(call inherit-product, device/motorola/maserati/full_maserati.mk)
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
@@ -22,7 +22,7 @@ ANDROID_VERSION := 4.0.4_r1.2
 MOTOROLA_BUILD_ID := IMM76L
 MOTOROLA_SOFTWARE_VERSION := 6.16.217
 DEVELOPER_NAME := hashcode
-DEVELOPER_HOST := rombot.droidhive.com
+DEVELOPER_HOST := hashcode-unn
 DEVELOPMENT_STAGE := Beta
 TARGET_BOOTANIMATION_NAME := vertical-540x960
 
