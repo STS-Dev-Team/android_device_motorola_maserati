@@ -33,6 +33,7 @@ PRODUCT_PACKAGES += \
     camera.omap4 \
     libinvensense_mpl \
     hwcomposer.maserati \
+    libedid \
 
 PRODUCT_PACKAGES += \
     libaudioutils \
@@ -167,7 +168,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/prebuilt/bin/backuptool.sh:system/bin/backuptool.sh \
     $(DEVICE_FOLDER)/prebuilt/bin/backuptool.functions:system/bin/backuptool.functions \
     $(DEVICE_FOLDER)/prebuilt/bin/50-backup.sh:system/addon.d/50-backup.sh
-
 
 # Phone settings
 PRODUCT_COPY_FILES += \
