@@ -839,7 +839,7 @@ service dhcpcd_usbeth0 /system/bin/dhcpcd -G
     disabled
     oneshot
 service pvrsrv /system/vendor/bin/pvrsrvinit
-    class main
+    class core
     user root
     oneshot
 service bugtogo /system/bin/bugtogo.sh
