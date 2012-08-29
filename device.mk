@@ -41,6 +41,7 @@ PRODUCT_COPY_FILES += \
     out/target/product/maserati/ramdisk.img:system/etc/kexec/ramdisk.img \
     out/target/product/maserati/kernel:system/etc/kexec/kernel
 
+#    $(DEVICE_FOLDER)/prebuilt/usr/idc/omap4-keypad.idc:system/usr/idc/omap4-keypad.idc
 # Prebuilts
 PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/prebuilt/bin/battd:system/bin/battd \
@@ -50,7 +51,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
     $(DEVICE_FOLDER)/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
     $(DEVICE_FOLDER)/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
-    $(DEVICE_FOLDER)/prebuilt/usr/idc/omap4-keypad.idc:system/usr/idc/omap4-keypad.idc
 
 #    $(DEVICE_FOLDER)/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
 
