@@ -1,7 +1,8 @@
 # Camera
 USE_CAMERA_STUB := false
-BOARD_USES_TI_CAMERA_HAL := true
-TI_CAMERAHAL_DEBUG_ENABLED := true
+#BOARD_USES_TI_CAMERA_HAL := true
+#TI_CAMERAHAL_DEBUG_ENABLED := true
+TI_OMAP4_CAMERAHAL_VARIANT := false
 
 # inherit from the proprietary version
 -include vendor/motorola/maserati/BoardConfigVendor.mk
@@ -51,18 +52,21 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_stora
 BOARD_MTP_DEVICE := "/dev/mtp"
 
 # Connectivity - Wi-Fi
+USES_TI_MAC80211 := true
+ifdef USES_TI_MAC80211
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wl12xx
 BOARD_HOSTAPD_DRIVER             := NL80211
-PRODUCT_WIRELESS_TOOLS           := true
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_wl12xx
 BOARD_WLAN_DEVICE                := wl12xx_mac80211
 BOARD_SOFTAP_DEVICE              := wl12xx_mac80211
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wl12xx_sdio.ko"
 WIFI_DRIVER_MODULE_NAME          := "wl12xx_sdio"
 WIFI_FIRMWARE_LOADER             := ""
+PRODUCT_WIRELESS_TOOLS           := true
 COMMON_GLOBAL_CFLAGS += -DUSES_TI_MAC80211
+endif
 
 # Audio
 BOARD_USES_GENERIC_AUDIO := false

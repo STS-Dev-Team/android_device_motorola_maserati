@@ -24,7 +24,7 @@ PRODUCT_PACKAGES := \
 PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/audio/alsa.omap4.so:/system/lib/hw/alsa.omap4.so \
     $(DEVICE_FOLDER)/audio/audio.a2dp.default.so:/system/lib/hw/audio.a2dp.default.so \
-    $(DEVICE_FOLDER)/audio/audio.primary.omap4.so:/system/lib/hw/audio.primary.omap4.so \
+    $(DEVICE_FOLDER)/audio/audio.primary.omap4.so:/system/lib/hw/audio.primary.maserati.so \
     $(DEVICE_FOLDER)/audio/audio_policy.omap4.so:/system/lib/hw/audio_policy.omap4.so \
     $(DEVICE_FOLDER)/audio/libasound.so:/system/lib/libasound.so \
     $(DEVICE_FOLDER)/audio/libaudio_ext.so:/system/lib/libaudio_ext.so
@@ -82,6 +82,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     evtest \
+    sensor.test \
     camera_test \
     Superuser \
     su \

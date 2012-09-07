@@ -58,8 +58,6 @@ ro.opengles.version = 131072
 
 # This is a high density device with more memory, so larger vm heaps for it.
 dalvik.vm.heapsize=76m
-# The URL for safety information
-#ro.url.safetylegal=http://www.motorola.com/staticfiles/Support/legal
 
 # our HTML browser (not WAP browser ) does not need to specify UAProf URL
 ro.mot.hw.uaprof=http://uaprof.vtext.com/mot/xt894/xt894.xml
@@ -97,7 +95,7 @@ persist.mot.usb.mediasync = 1
 # persist.usb.android_config = 1
 
 # System property for Security Middleware Component
-ro.service.start.smc=1
+ro.service.start.smc=0
 ro.HorizontalBUA=true
 #Proximity sensor debounce time
 mot.proximity.delay=450
@@ -284,7 +282,7 @@ ro.mot.dpmext=true
 ro.com.google.clientid=android-motorola
 ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
-ro.build.version.full=ICS_Version.4.0.4_r1.2.XT894.Verizon.en.US
+ro.build.version.full=ICS_Version.4.0.4_r2.1.XT894.Verizon.en.US
 ro.mot.hidden_keyboards=evfwd
 ro.mot.build.version.sdk_int=6
 ro.setupwizard.enable_bypass=1
