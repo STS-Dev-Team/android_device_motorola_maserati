@@ -22,3 +22,4 @@
 
 add_lunch_combo full_maserati-userdebug
 add_lunch_combo cm_maserati-userdebug
+add_lunch_combo aokp_maserati-userdebug
