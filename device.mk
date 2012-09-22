@@ -67,10 +67,6 @@ PRODUCT_COPY_FILES += \
 
 #    $(DEVICE_FOLDER)/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
 
-# Phone settings
-PRODUCT_COPY_FILES += \
-    device/sample/etc/apns-conf_verizon.xml:system/etc/apns-conf.xml
-
 # SU binary for AOSP builds
 ifeq ($(TARGET_PRODUCT),full_maserati)
 PRODUCT_COPY_FILES += vendor/motorola/common/prebuilt/bin/su:system/xbin/su
