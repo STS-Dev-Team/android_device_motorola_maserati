@@ -15,7 +15,7 @@ keyboard.builtIn = 1
 # device has been rotated.
 keyboard.orientationAware = 1
 
-#keyboard.layout = omap4-keypad
-#keyboard.characterMap = omap4-keypad
+keyboard.layout = omap4-keypad
+keyboard.characterMap = omap4-keypad
 
 
