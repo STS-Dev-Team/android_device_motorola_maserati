@@ -287,3 +287,4 @@ hwui.render_dirty_regions=false
 persist.sys.root_access=3
 ro.hwc.legacy_api=true
 ro.product.use_charge_counter=1
+ro.telephony.ril.v3=motoril
