@@ -1,6 +1,5 @@
 on early-init
 
-    export EXTERNAL_STORAGE /mnt/sdcard
     mkdir /mnt/sdcard 0000 system system
     # for backwards compatibility
     symlink /mnt/sdcard /sdcard
@@ -13,8 +12,10 @@ on init
     export ANDROID_CACHE /cache
     export DOWNLOAD_CACHE /cache/download
     export SD_EXT_DIRECTORY /sd-ext
-    export SECONDARY_STORAGE /mnt/sdcard-ext
+    export EXTERNAL_STORAGE /mnt/sdcard-ext
+    export SECONDARY_STORAGE /mnt/sdcard
 #    export EXTERNAL_ALT_STORAGE /mnt/sdcard-ext # Feature 34534
+
     mkdir /mnt/sdcard-ext 0000 system system # Feature 34534
     symlink /mnt/sdcard-ext /sdcard-ext # Feature 34534
 
@@ -52,7 +53,7 @@ on init
     chown system radio /sys/class/radio/mdm6600/command
 
 on fs
-    mount ext3 /dev/block/mmcblk1p22 /system wait noatime nodiratime barrier=1
+    mount ext3 /dev/block/system /system wait noatime nodiratime barrier=1
     mount ext3 /dev/block/pds /pds nosuid nodev noatime nodiratime
     mount ext3 /dev/block/userdata /data nosuid nodev noatime nodiratime
     mount ext3 /dev/block/cache /cache nosuid nodev noatime nodiratime
@@ -64,7 +65,7 @@ on post-fs
     chown system system /pds
     chmod 0775 /pds
 
-    mount ext3 /dev/block/mmcblk1p22 /system ro noatime nodiratime remount
+    mount ext3 /dev/block/system /system ro noatime nodiratime remount
     mount rootfs rootfs / rw remount
 # Backward compatibility
     symlink /dev /dev/netmux
