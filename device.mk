@@ -36,12 +36,20 @@ PRODUCT_COPY_FILES += \
 
 # Kexec files and ti ducati or rootfs files
 ifeq ($(BOARD_USES_KEXEC),true)
+ifeq ($(TARGET_PRODUCT),full_maserati)
+PRODUCT_COPY_FILES += device/motorola/common/prebuilt/etc/rootfs/init:root/init
+endif
 PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/kexec/devtree:system/etc/kexec/devtree \
     $(DEVICE_FOLDER)/prebuilt/etc/firmware/ducati-m3.bin:system/etc/firmware/ducati-m3.bin \
     out/target/product/maserati/ramdisk.img:system/etc/kexec/ramdisk.img \
     out/target/product/maserati/kernel:system/etc/kexec/kernel
 else
+ifeq ($(TARGET_PRODUCT),full_maserati)
+PRODUCT_COPY_FILES += device/motorola/common/prebuilt/etc/rootfs/init:system/etc/rootfs/init
+else
+PRODUCT_COPY_FILES += out/target/product/maserati/root/init:system/etc/rootfs/init
+endif
 PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/root/default.prop:/system/etc/rootfs/default.prop \
     system/core/rootdir/init.rc:/system/etc/rootfs/init.rc \
@@ -50,7 +58,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/root/ueventd.rc:/system/etc/rootfs/ueventd.rc \
     $(DEVICE_FOLDER)/root/ueventd.mapphone_cdma.rc:/system/etc/rootfs/ueventd.mapphone_cdma.rc \
     $(DEVICE_FOLDER)/root/ueventd.mapphone_umts.rc:/system/etc/rootfs/ueventd.mapphone_umts.rc \
-    out/target/product/maserati/root/init:system/etc/rootfs/init \
     out/target/product/maserati/root/sbin/adbd:system/etc/rootfs/sbin/adbd
 endif
 
