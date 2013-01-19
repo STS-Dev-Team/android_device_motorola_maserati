@@ -12,6 +12,7 @@ COMMON_FOLDER := device/motorola/common
 # Hardware HALs
 PRODUCT_PACKAGES += \
     camera.maserati \
+    lights.maserati \
 
 #    hwcomposer.maserati \
 
