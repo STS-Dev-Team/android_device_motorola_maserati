@@ -66,7 +66,6 @@ char const*const RED_LED_FILE = "/sys/class/leds/red/brightness";
 char const*const RED_BLINK_FILE = "/sys/class/leds/red/blink";
 char const*const GREEN_LED_FILE = "/sys/class/leds/green/brightness";
 char const*const BLUE_LED_FILE = "/sys/class/leds/blue/brightness";
-char const*const CHARGE_LED_FILE = "/sys/class/leds/usb/brightness";
 
 void init_globals(void)
 {
@@ -235,8 +234,6 @@ handle_light_locked(struct light_device_t *dev)
     } else {
         retval = set_light_locked(dev, &g_battery);
     }
-
-    write_int(CHARGE_LED_FILE, show_charge);
 
     return retval;
 }
