@@ -33,11 +33,6 @@
 
 #include <hardware/lights.h>
 
-// taken from led-lm3530.h in kernel source, these are als modes
-#define MANUAL          0
-#define AUTOMATIC       1
-#define MANUAL_SENSOR   2
-
 /******************************************************************************/
 
 #define CHARGE_LED_OFF   0
@@ -55,8 +50,7 @@ static int g_charge_led_active;
 static int g_last_button_brightness;
 static int g_last_keyboard_brightness;
 
-char const*const LCD_FILE = "/sys/class/leds/lcd-backlight/brightness";
-char const*const ALS_FILE = "/sys/class/leds/lcd-backlight/als";
+char const*const LCD_FILE = "/sys/class/backlight/lm3532_bl/brightness";
 char const*const BUTTON_ON_FILE = "/sys/class/leds/button-backlight/brightness";
 char const*const KEYBOARD_FILE = "/sys/class/leds/keyboard-backlight/brightness";
 char const*const KEYBOARD_SHIFT_FILE = "/sys/class/leds/shift-key-light/brightness";
@@ -123,23 +117,9 @@ set_light_backlight(struct light_device_t* dev,
 {
     int err = 0;
     int brightness = rgb_to_brightness(state);
-    int als_mode;
-
-    switch (state->brightnessMode) {
-        case BRIGHTNESS_MODE_SENSOR:
-            als_mode = AUTOMATIC;
-            break;
-        case BRIGHTNESS_MODE_USER:
-        default:
-            als_mode = MANUAL_SENSOR;
-            break;
-    }
 
     pthread_mutex_lock(&g_lock);
-    err = write_int(ALS_FILE, als_mode);
-    if (!err) {
-        err = write_int(LCD_FILE, brightness);
-    }
+    err = write_int(LCD_FILE, brightness);
     pthread_mutex_unlock(&g_lock);
 
     return err;
