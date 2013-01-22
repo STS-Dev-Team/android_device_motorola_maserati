@@ -138,7 +138,7 @@ set_light_keyboard(struct light_device_t* dev,
         (g_last_keyboard_brightness == 0 && brightness > 0) ||
         (g_last_keyboard_brightness > 0 && brightness == 0))
     {
-        err = write_int(KEYBOARD_FILE, brightness ? 1 : 0);
+        err = write_int(KEYBOARD_FILE, brightness ? 255 : 0);
     }
 
     g_last_keyboard_brightness = brightness;
@@ -162,9 +162,9 @@ set_light_buttons(struct light_device_t* dev,
         (g_last_button_brightness == 0 && brightness > 0) ||
         (g_last_button_brightness > 0 && brightness == 0))
     {
-        err = write_int(BUTTON_ON_FILE, brightness ? 1 : 0);
+        err = write_int(BUTTON_ON_FILE, brightness ? 255 : 0);
 	// temporary hack due to lack of KEYBOARD light support
-        err = write_int(KEYBOARD_FILE, brightness ? 1 : 0);
+        err = write_int(KEYBOARD_FILE, brightness ? 255 : 0);
     }
 
     g_last_button_brightness = brightness;
