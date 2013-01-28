@@ -16,12 +16,6 @@ PRODUCT_PACKAGES += \
 
 #    hwcomposer.maserati
 
-# Audio
-PRODUCT_COPY_FILES += \
-    $(DEVICE_FOLDER)/audio/alsa.omap4.so:/system/lib/hw/alsa.omap4.so \
-    $(DEVICE_FOLDER)/audio/audio.primary.omap4.so:/system/lib/hw/audio.primary.maserati.so \
-    $(DEVICE_FOLDER)/audio/libaudio_ext.so:/system/lib/libaudio_ext.so
-
 # Modem
 PRODUCT_PACKAGES += \
     nc \
