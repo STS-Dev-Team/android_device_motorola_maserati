@@ -33,8 +33,6 @@ endif
 
 # Prebuilts
 PRODUCT_COPY_FILES += \
-    $(DEVICE_FOLDER)/prebuilt/bin/battd:system/bin/battd \
-    $(DEVICE_FOLDER)/prebuilt/bin/mount_ext3.sh:system/bin/mount_ext3.sh \
     $(DEVICE_FOLDER)/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
     $(DEVICE_FOLDER)/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     $(DEVICE_FOLDER)/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
@@ -52,7 +50,7 @@ PRODUCT_COPY_FILES += $(shell \
 endif
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-$(call inherit-product-if-exists, vendor/motorola/common/proprietary/vzw/verizon.mk)
+$(call inherit-product-if-exists, vendor/motorola/omap4-common/proprietary/vzw/verizon.mk)
 $(call inherit-product-if-exists, vendor/motorola/maserati/maserati-vendor.mk)
 ifneq ($(BOARD_USES_KEXEC),true)
 $(call inherit-product-if-exists, vendor/motorola/maserati/maserati-vendor-pvr.mk)
