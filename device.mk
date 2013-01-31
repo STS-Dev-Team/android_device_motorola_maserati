@@ -4,7 +4,6 @@
 $(call inherit-product, device/motorola/omap4-common/common.mk)
 
 DEVICE_FOLDER := device/motorola/maserati
-COMMON_FOLDER := device/motorola/common
 
 # Device overlay
     DEVICE_PACKAGE_OVERLAYS += $(DEVICE_FOLDER)/overlay/aosp
