@@ -34,8 +34,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=cdma_masersati
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-# This is where we'd set a backup provider if we had one
-#$(call inherit-product, device/sample/products/backup_overlay.mk)
 # Inherit from maserati device
 $(call inherit-product-if-exists, device/motorola/kexec/kexec.mk)
 $(call inherit-product, device/motorola/maserati/device.mk)

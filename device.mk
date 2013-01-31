@@ -24,20 +24,11 @@ PRODUCT_PACKAGES += \
 
 # Kexec files and ti ducati or rootfs files
 ifeq ($(BOARD_USES_KEXEC),true)
-ifeq ($(TARGET_PRODUCT),full_maserati)
-PRODUCT_COPY_FILES += $(COMMON_FOLDER)/prebuilt/etc/rootfs/init:root/init
-endif
 PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/prebuilt/etc/firmware/ducati-m3.bin:system/etc/firmware/ducati-m3.bin \
     $(DEVICE_FOLDER)/kexec/devtree:system/etc/kexec/devtree \
     $(OUT)/ramdisk.img:system/etc/kexec/ramdisk.img \
     $(OUT)/kernel:system/etc/kexec/kernel
-else
-ifeq ($(TARGET_PRODUCT),full_maserati)
-PRODUCT_COPY_FILES += $(COMMON_FOLDER)/prebuilt/etc/rootfs/init:system/etc/rootfs/init
-else
-PRODUCT_COPY_FILES += $(OUT)/root/init:system/etc/rootfs/init
-endif
 endif
 
 # Prebuilts
