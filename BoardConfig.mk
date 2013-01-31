@@ -1,5 +1,5 @@
 # inherit from common
--include device/motorola/common/BoardConfigCommon.mk
+-include device/motorola/omap4-common/BoardConfigCommon.mk
 
 # inherit from the proprietary version
 -include vendor/motorola/maserati/BoardConfigVendor.mk
