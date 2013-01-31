@@ -1,5 +1,9 @@
 # inherit from common
+ifeq ($(BOARD_USES_KEXEC),true)
+-include device/motorola/omap4-kexec-common/BoardConfigCommon.mk
+else
 -include device/motorola/omap4-common/BoardConfigCommon.mk
+endif
 
 # inherit from the proprietary version
 -include vendor/motorola/maserati/BoardConfigVendor.mk
