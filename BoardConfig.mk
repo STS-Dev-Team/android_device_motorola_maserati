@@ -22,9 +22,9 @@ BOARD_PAGE_SIZE := 0x4096
 
 # Kernel Build
 ifeq ($(BOARD_USES_KEXEC),true)
-TARGET_KERNEL_SOURCE := kernel/motorola/mapphone
+TARGET_KERNEL_SOURCE := kernel/motorola/omap4-kexec-common
 TARGET_KERNEL_CONFIG := mapphone_maserati_jb_defconfig
 else
-TARGET_KERNEL_SOURCE := kernel/motorola/omap4_xt912
+TARGET_KERNEL_SOURCE := kernel/motorola/omap4-common
 TARGET_KERNEL_CONFIG := mapphone_defconfig
 endif
