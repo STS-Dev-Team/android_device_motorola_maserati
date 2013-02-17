@@ -24,11 +24,11 @@ key 227   STAR
 key 231   CALL              WAKE_DROPPED
 key 61    CALL              WAKE_DROPPED
 key 232   DPAD_CENTER       WAKE_DROPPED
-key 105   DPAD_DOWN         WAKE_DROPPED
-key 106   DPAD_UP           WAKE_DROPPED
+key 105   DPAD_LEFT         WAKE_DROPPED
+key 106   DPAD_RIGHT        WAKE_DROPPED
 key 102   HOME              WAKE
-key 103   DPAD_LEFT         WAKE_DROPPED
-key 108   DPAD_RIGHT        WAKE_DROPPED
+key 103   DPAD_UP           WAKE_DROPPED
+key 108   DPAD_DOWN         WAKE_DROPPED
 key 115   VOLUME_UP         WAKE
 key 114   VOLUME_DOWN       WAKE
 key 116   POWER             WAKE
@@ -87,6 +87,6 @@ key 12    MINUS             WAKE_DROPPED
 key 13    EQUALS            WAKE_DROPPED
 key 215   AT                WAKE_DROPPED
 
-key 222   CAPS              WAKE_DROPPED
-key 162   SYM               WAKE_DROPPED
+key 222   CAPS_LOCK         WAKE_DROPPED
+key 162   MEDIA_EJECT       WAKE_DROPPED
 
