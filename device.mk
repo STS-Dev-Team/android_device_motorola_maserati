@@ -25,14 +25,14 @@ PRODUCT_PACKAGES += \
     Stk \
     libreference-cdma-sms
 
+#    $(DEVICE_FOLDER)/prebuilt/etc/firmware/ducati-m3.bin:system/etc/firmware/ducati-m3.bin \
 # Kexec files and ti ducati or rootfs files
-ifeq ($(BOARD_USES_KEXEC),true)
+#ifeq ($(BOARD_USES_KEXEC),true)
 PRODUCT_COPY_FILES += \
-    $(DEVICE_FOLDER)/prebuilt/etc/firmware/ducati-m3.bin:system/etc/firmware/ducati-m3.bin \
     $(DEVICE_FOLDER)/kexec/devtree:system/etc/kexec/devtree \
     $(OUT)/ramdisk.img:system/etc/kexec/ramdisk.img \
     $(OUT)/kernel:system/etc/kexec/kernel
-endif
+#endif
 
 # Prebuilts
 PRODUCT_COPY_FILES += \
@@ -45,12 +45,12 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/prebuilt/usr/keylayout/omap4-keypad.kl:system/usr/keylayout/omap4-keypad.kl
 
 # copy all kernel modules under the "modules" directory to system/lib/modules
-ifneq ($(BOARD_USES_KEXEC),true)
-PRODUCT_COPY_FILES += $(shell \
-    find device/motorola/maserati/modules -name '*.ko' \
-    | sed -r 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/lib\/modules\/\2/' \
-    | tr '\n' ' ')
-endif
+#ifneq ($(BOARD_USES_KEXEC),true)
+#PRODUCT_COPY_FILES += $(shell \
+#    find device/motorola/maserati/modules -name '*.ko' \
+#    | sed -r 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/lib\/modules\/\2/' \
+#    | tr '\n' ' ')
+#endif
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 $(call inherit-product-if-exists, vendor/motorola/omap4-common/proprietary/vzw/verizon.mk)
