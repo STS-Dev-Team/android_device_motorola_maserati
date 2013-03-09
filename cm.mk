@@ -10,12 +10,6 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/motorola/maserati/overlay/cm
 
-# CM-specific init file for SafeStrap
-ifneq ($(BOARD_USES_KEXEC),true)
-PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/etc/init.local.rc:system/etc/rootfs/init.cm.rc
-endif
-
 #
 # Setup device specific product configuration.
 #
