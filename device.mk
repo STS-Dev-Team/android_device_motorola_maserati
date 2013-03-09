@@ -35,6 +35,12 @@ PRODUCT_PACKAGES += \
     Stk \
     libreference-cdma-sms
 
+# Kexec files
+PRODUCT_COPY_FILES += \
+    $(DEVICE_FOLDER)/kexec/devtree:system/etc/kexec/devtree \
+    $(OUT)/ramdisk.img:system/etc/kexec/ramdisk.img \
+    $(OUT)/kernel:system/etc/kexec/kernel
+
 # Prebuilts
 PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
@@ -44,14 +50,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/prebuilt/usr/idc/omap4-keypad.idc:system/usr/idc/omap4-keypad.idc \
     $(DEVICE_FOLDER)/prebuilt/usr/keychars/omap4-keypad.kcm:system/usr/keychars/omap4-keypad.kcm \
     $(DEVICE_FOLDER)/prebuilt/usr/keylayout/omap4-keypad.kl:system/usr/keylayout/omap4-keypad.kl
-
-# copy all kernel modules under the "modules" directory to system/lib/modules
-ifneq ($(BOARD_USES_KEXEC),true)
-PRODUCT_COPY_FILES += $(shell \
-    find device/motorola/maserati/modules -name '*.ko' \
-    | sed -r 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/lib\/modules\/\2/' \
-    | tr '\n' ' ')
-endif
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 $(call inherit-product-if-exists, vendor/motorola/omap4-common/proprietary/vzw/verizon.mk)
