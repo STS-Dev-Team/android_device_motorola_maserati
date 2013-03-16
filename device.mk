@@ -24,10 +24,10 @@ DEVICE_FOLDER := device/motorola/maserati
 
 # Hardware HALs
 PRODUCT_PACKAGES += \
+    power.maserati \
     camera.maserati \
-    lights.maserati
-
-#    hwcomposer.maserati
+    lights.maserati \
+    hwcomposer.maserati
 
 # Modem
 PRODUCT_PACKAGES += \
@@ -51,5 +51,5 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_FOLDER)/prebuilt/usr/keylayout/omap4-keypad.kl:system/usr/keylayout/omap4-keypad.kl
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-$(call inherit-product-if-exists, vendor/motorola/omap4-common/proprietary/vzw/verizon.mk)
 $(call inherit-product-if-exists, vendor/motorola/maserati/maserati-vendor.mk)
+$(call inherit-product-if-exists, vendor/motorola/omap4-common/common-vendor-pvr.mk)
