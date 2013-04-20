@@ -1,15 +1,15 @@
-# system/bin (from maserati ICS 6.16.217 ota)
+# system/bin (from maserati JB 98.72.18 ota)
 bin/akmd8975
 
-# system/etc (from maserati ICS 6.16.217 ota)
+# system/etc (from maserati JB 98.72.18 ota)
 etc/firmware/ducati-m3.bin
 etc/firmware/TIInit_10.6.15.bts
 
-# system/usr (from maserati ICS 6.16.217 ota)
+# system/usr (from maserati JB 98.72.18 ota)
 usr/keylayout/atmxt-i2c.kl
 
-# system/lib/hw (from maserati ICS 6.16.217 ota)
+# system/lib/hw (from maserati JB 98.72.18 ota)
 lib/hw/sensors.maserati.so
 
-# system/etc/omapcam/module2 (from maserati ICS 6.16.217 ota)
+# system/etc/omapcam/module2 (from maserati JB 98.72.18 ota)
 etc/omapcam/module2/cid1044_mt9m114_sensor_config_dcc.bin
