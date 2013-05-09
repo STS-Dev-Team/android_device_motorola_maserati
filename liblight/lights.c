@@ -49,6 +49,7 @@ static struct light_state_t g_notification;
 static int g_charge_led_active;
 static int g_last_button_brightness;
 static int g_last_keyboard_brightness;
+static int g_last_caps_brightness;
 
 char const*const LCD_FILE = "/sys/class/backlight/lm3532_bl/brightness";
 char const*const BUTTON_ON_FILE = "/sys/class/leds/button-backlight/brightness";
@@ -71,6 +72,7 @@ void init_globals(void)
     g_charge_led_active = 0;
     g_last_button_brightness = -1;
     g_last_keyboard_brightness = -1;
+    g_last_caps_brightness = -1;
 }
 
 static int
@@ -138,7 +140,7 @@ set_light_keyboard(struct light_device_t* dev,
         (g_last_keyboard_brightness == 0 && brightness > 0) ||
         (g_last_keyboard_brightness > 0 && brightness == 0))
     {
-        err = write_int(KEYBOARD_FILE, brightness ? 255 : 0);
+        err = write_int(KEYBOARD_FILE, brightness);
     }
 
     g_last_keyboard_brightness = brightness;
@@ -147,6 +149,29 @@ set_light_keyboard(struct light_device_t* dev,
 
     return err;
 
+}
+
+static int
+set_light_caps(struct light_device_t* dev,
+        struct light_state_t const* state)
+{
+    int err = 0;
+    int brightness = rgb_to_brightness(state);
+
+    pthread_mutex_lock(&g_lock);
+
+    if (g_last_caps_brightness < 0 ||
+        (g_last_caps_brightness == 0 && brightness > 0) ||
+        (g_last_caps_brightness > 0 && brightness == 0))
+    {
+        err = write_int(KEYBOARD_SHIFT_FILE, brightness ? 255 : 0);
+    }
+
+    g_last_caps_brightness = (brightness ? 255 : 0);
+
+    pthread_mutex_unlock(&g_lock);
+
+    return err;
 }
 
 static int
@@ -163,8 +188,6 @@ set_light_buttons(struct light_device_t* dev,
         (g_last_button_brightness > 0 && brightness == 0))
     {
         err = write_int(BUTTON_ON_FILE, brightness ? 255 : 0);
-	// temporary hack due to lack of KEYBOARD light support
-        err = write_int(KEYBOARD_FILE, brightness ? 255 : 0);
     }
 
     g_last_button_brightness = brightness;
@@ -273,6 +296,9 @@ static int open_lights(const struct hw_module_t* module, char const* name,
     }
     else if (0 == strcmp(LIGHT_ID_KEYBOARD, name)) {
         set_light = set_light_keyboard;
+    }
+    else if (0 == strcmp(LIGHT_ID_CAPS, name)) {
+        set_light = set_light_caps;
     }
     else if (0 == strcmp(LIGHT_ID_BUTTONS, name)) {
         set_light = set_light_buttons;
