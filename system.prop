@@ -23,7 +23,7 @@ ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/
 ro.cdma.home.operator.numeric=310004
 ro.cdma.home.operator.alpha=Verizon
 ro.config.vc_call_vol_steps=7
-ro.config.svlte1x=true
+ro.config.svdo=true
 
 # Indicate carrier OTA SP number schema
 # refer to frameworks/base/telephony/java/com/android/
