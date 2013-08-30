@@ -59,5 +59,7 @@
         <item>"/dev/ttyUSB4"</item>
     </string-array>
 
+    <integer name="config_keyboardBrightnessSettingDefault">255</integer>
+
 </resources>
 
